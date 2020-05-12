@@ -4,6 +4,7 @@ const config = require('./config.js')
 const influx = require('./influx.js')
 const buffer = require('./buffer.js')
 const opcua = require('./opcua.js')
+const timescaledb = require('./timescaledb.js')
 
 let conf = config.load()
 
@@ -36,6 +37,13 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     await influx.start(conf.influx.url)
 
     //
+    // Init timescaledb
+    //
+
+    log.info('Initialising TimeScaleDB')
+    await timescaledb.start()
+
+    //
     // Create and start the buffer.
     //
 
@@ -49,6 +57,8 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     log.info('Connecting OPCUA')
     await opcua.start(conf.opcua)
     opcua.EVENTS.on('points', (pts) => buffer.addPoints(pts))
+    opcua.EVENTS.on('points', (pts) => timescaledb.write(pts))
+    log.info('OPCUA DONE')
 
     //
     // Add all metrics to the OPCUA Session
@@ -56,11 +66,11 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     for (let m of conf.metrics) {
       opcua.addMetric(m)
     }
-
+      log.info('Adding Metrics Done')
     //
     // If not disabled, send anonymous usage stats
     //
-    if (!process.env.DISABLE_ANALYTICS) await analytics.start(conf.metrics.length)
+//    if (!process.env.DISABLE_ANALYTICS) await analytics.start(conf.metrics.length)
   } catch (e) {
     gracefullShutdown(e)
   }

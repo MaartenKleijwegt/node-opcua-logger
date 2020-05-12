@@ -276,7 +276,7 @@ function _addMonitoredMetric (metric) {
 
   // add the monitored item to the metric, and the metric to the subscriptions.
   metric.uaMonitoredItem = uaMonitoredItem
-  log.info('Added Monitored Metric.', { measurement: metric.measurement, tags: metric.tags, nodeId: metric.nodeId })
+  log.info('Added Monitored Metric.', {measurement: metric.measurement, tags: metric.tags, nodeId: metric.nodeId })
 }
 
 module.exports = { start, stop, addMetric, EVENTS }

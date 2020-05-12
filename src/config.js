@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 const path = require('path')
 const toml = require('toml')
 
-const loc = process.env.CONFIG_FILE || path.resolve(process.cwd(), 'config.toml')
+const loc = process.env.CONFIG_FILE || path.resolve(process.cwd(), './data/config.toml')
 
 let load = () => {
   let file = fs.readFileSync(loc)
