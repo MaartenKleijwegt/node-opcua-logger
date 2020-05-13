@@ -23,6 +23,7 @@ async function crawl () {
 
         await session.close();
         await client.disconnect();
+      }
     } catch (err) {
         console.log("err = ", err.message);
     }
