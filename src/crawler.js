@@ -13,19 +13,23 @@ async function crawl () {
 
         const endpoint = conf.opcua.url;
         await client.connect(endpoint);
+        var userIdentity = {
+          userName: conf.opcua.user,
+          password: conf.opcua.pass,
+        }
 
-        const session = await client.createSession(conf.user, conf.pass);
+        let session = await client.createSession(userIdentity);
 
-        const crawler = new opcua.NodeCrawler(session);
+        let crawler = new opcua.NodeCrawler(session);
 
-        const data = await crawler.read("ns=0;i=80");
+        const data = await crawler.read();
         console.log(data);
 
         await session.close();
         await client.disconnect();
-      }
+
     } catch (err) {
-        console.log("err = ", err.message);
+        console.log("err = ", err);
     }
 };
 
