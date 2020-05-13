@@ -107,8 +107,9 @@ interval           = 5000
 
 ## Credits
 
-* Jeroen Coussement - [@coussej](https://twitter.com/coussej) - [coussej.github.io](http://coussej.github.io) - [factry.io](https://www.factry.io)
-* Etienne Rossignon - [@gadz_er](https://twitter.com/gadz_er) - for creating the fantastic [node-opcua](https://github.com/node-opcua/node-opcua) library.
+* Joris             -                                         -                                               - [Barth Industrial Automation](https://barthindustrialautomation.com/) - implementing the timescaledb connection 
+* Jeroen Coussement - [@coussej](https://twitter.com/coussej) - [coussej.github.io](http://coussej.github.io) - [factry.io](https://www.factry.io)                                    - writing this tool
+* Etienne Rossignon - [@gadz_er](https://twitter.com/gadz_er) -                                               -                                                                       - for creating the fantastic [node-opcua](https://github.com/node-opcua/node-opcua) library.
 
 ## Disclaimer
 The logger contains a 'phone home' functionality, where it sends anonymous usage data to us (# metrics and runtime), so we can get an idea of how much it is being used. If you don't want this, you can set DISABLE_ANALYTICS=true in the environment.
