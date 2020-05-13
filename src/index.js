@@ -5,6 +5,7 @@ const influx = require('./influx.js')
 const buffer = require('./buffer.js')
 const opcua = require('./opcua.js')
 const timescaledb = require('./timescaledb.js')
+const crawler = require('./crawler.js')
 
 let conf = config.load()
 
@@ -46,6 +47,8 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     //
     // Create and start the buffer.
     //
+
+    await crawler.crawl()
 
     log.info('Initialising buffer')
     await buffer.start(influx.write)
