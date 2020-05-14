@@ -47,9 +47,6 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     //
     // Create and start the buffer.
     //
-
-    await crawler.crawl()
-
     log.info('Initialising buffer')
     await buffer.start(influx.write)
 
@@ -62,6 +59,9 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     opcua.EVENTS.on('points', (pts) => buffer.addPoints(pts))
     opcua.EVENTS.on('points', (pts) => timescaledb.write(pts))
     log.info('OPCUA DONE')
+
+
+    await crawler.crawl()
 
     //
     // Add all metrics to the OPCUA Session
