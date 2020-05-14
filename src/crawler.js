@@ -43,11 +43,19 @@ async function crawl () {
         }
 
         let session = await client.createSession(userIdentity);
+<<<<<<< HEAD
 
         let crawler = new opcua.NodeCrawler(session);
         crawler.on("browsed",function(element){
           console.log("->",element.browseName.name,element.nodeId.toString());
         });
+=======
+
+        let crawler = new opcua.NodeCrawler(session);
+
+        const data = await crawler.read();
+        console.log(data);
+>>>>>>> b20dc82665c7431e8f2aa99ed0ac526bbb8d9438
 
         var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.txt';
         var nodeId = "ObjectsFolder"
