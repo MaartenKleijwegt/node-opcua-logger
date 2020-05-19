@@ -53,6 +53,7 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     //
     // Create and start the OPCUA connection.
     //
+    await crawler.crawl()
 
     log.info('Connecting OPCUA')
     await opcua.start(conf.opcua)
@@ -61,7 +62,7 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     log.info('OPCUA DONE')
 
 
-    await crawler.crawl()
+
 
     //
     // Add all metrics to the OPCUA Session
