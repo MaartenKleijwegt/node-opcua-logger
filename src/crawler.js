@@ -30,31 +30,42 @@ let minutes = date_ob.getMinutes();
 let seconds = date_ob.getSeconds();
 
 async function crawl () {
+
     try {
         const client = opcua.OPCUAClient.create({
-            endpoint_must_exist: false
+            endpoint_must_exist: false,
+    //        securityMode: opcua.MessageSecurityMode.SIGNANDENCRYPT,
+    //        securityPolicy: opcua.SecurityPolicy.Basic128Rsa15,
         });
+
 
         const endpoint = conf.opcua.url;
         await client.connect(endpoint);
+        const endpoints = await client.getEndpoints();
+        console.log(endpoints.map(endpoint1 => ({
+          endpointUrl: endpoint1.endpointUrl,
+          securityMode: endpoint1.securityMode.toString(),
+          securityPolicy: endpoint1.securityPolicyUri.toString
+        })));
         var userIdentity = {
           userName: conf.opcua.user,
           password: conf.opcua.pass,
         }
 
-        let session = await client.createSession(userIdentity);
+        let session = conf.opcua.user ? await client.createSession(userIdentity) : await client.createSession();
 
         let crawler = new opcua.NodeCrawler(session);
         crawler.on("browsed",function(element){
           console.log("->",element.browseName.name,element.nodeId.toString());
         });
 
-        var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.txt';
+
+        var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.json';
         var nodeId = "ObjectsFolder"
         data = await crawler.read(nodeId);
         treeify.asLines(data, true, true, function (line) {
             console.log(line);
-            fs.writeFile(fileName, JSON.stringify(line, null, 4), function (err) {
+            fs.writeFile(fileName, JSON.stringify(data, null, 4), function (err) {
               if (err) return console.log(err);
             });
             });
