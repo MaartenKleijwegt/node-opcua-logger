@@ -41,8 +41,8 @@ async function crawl () {
 
       const endpoint = conf.opcua.url;
       await client.connect(endpoint);
-    //  const endpoints = await client.getEndpoints();
-    //  console.log(endpoints);
+      const endpoints = await client.getEndpoints();
+      console.log(endpoints);
         var userIdentity = {
           userName: conf.opcua.user,
           password: conf.opcua.pass,
