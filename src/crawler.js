@@ -59,11 +59,11 @@ async function crawl () {
         var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.json';
         var nodeId = "ns=4;i=2"
         var nodeId = "ObjectsFolder"
-      //  data = await crawler.read(nodeId);
+        data = await crawler.read(nodeId);
       //  treeify.asLines(data, true, true, function (line) {
       //      console.log(line);
-      //      fs.writeFile(fileName, data, function (err) {
-      //        if (err) return console.log(err);
+      //     fs.writeFile(fileName, data, function (err) {
+      //       if (err) return console.log(err);
       //      });
       //      });
             console.log('File writing with crawled points succesfull!');
