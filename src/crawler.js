@@ -53,7 +53,7 @@ async function crawl () {
         let crawler = new opcua.NodeCrawler(session);
       //  crawler.on("browsed",function(element){
         //  console.log("->",element.browseName.name,element.nodeId.toString());
-        });
+        //});
 
 
         var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.json';
