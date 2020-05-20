@@ -39,10 +39,10 @@ async function crawl () {
         });
 
 
-       const endpoint = conf.opcua.url;
-        await client.connect(endpoint);
-      //  const endpoints = await client.getEndpoints();
-      //  console.log(endpoints);
+      const endpoint = conf.opcua.url;
+      await client.connect(endpoint);
+    //  const endpoints = await client.getEndpoints();
+    //  console.log(endpoints);
         var userIdentity = {
           userName: conf.opcua.user,
           password: conf.opcua.pass,
@@ -51,20 +51,21 @@ async function crawl () {
         let session =  await client.createSession();
 
         let crawler = new opcua.NodeCrawler(session);
-        //crawler.on("browsed",function(element){
+      //  crawler.on("browsed",function(element){
         //  console.log("->",element.browseName.name,element.nodeId.toString());
-      //  });
+        });
 
 
         var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.json';
+        var nodeId = "ns=4;i=2"
         var nodeId = "ObjectsFolder"
-        data = await crawler.read(nodeId);
+      //  data = await crawler.read(nodeId);
       //  treeify.asLines(data, true, true, function (line) {
       //      console.log(line);
-            fs.writeFile(fileName, data, function (err) {
-              if (err) return console.log(err);
-            });
-          //  });
+      //      fs.writeFile(fileName, data, function (err) {
+      //        if (err) return console.log(err);
+      //      });
+      //      });
             console.log('File writing with crawled points succesfull!');
         await session.close();
         await client.disconnect();

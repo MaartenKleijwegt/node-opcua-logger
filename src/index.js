@@ -47,12 +47,16 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     //
     // Create and start the buffer.
     //
+
+
     log.info('Initialising buffer')
     await buffer.start(influx.write)
 
     //
     // Create and start the OPCUA connection.
     //
+
+    log.info('Initialising crawler')
     await crawler.crawl()
 
     log.info('Connecting OPCUA')
