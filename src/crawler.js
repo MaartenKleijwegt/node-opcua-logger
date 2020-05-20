@@ -39,8 +39,8 @@ async function crawl () {
         });
 
 
-      //  const endpoint = conf.opcua.url;
-      //  await client.connect(endpoint);
+       const endpoint = conf.opcua.url;
+        await client.connect(endpoint);
       //  const endpoints = await client.getEndpoints();
       //  console.log(endpoints);
         var userIdentity = {
@@ -48,7 +48,7 @@ async function crawl () {
           password: conf.opcua.pass,
         }
 
-        let session = conf.opcua.user ? await client.createSession(userIdentity) : await client.createSession();
+        let session =  await client.createSession();
 
         let crawler = new opcua.NodeCrawler(session);
         //crawler.on("browsed",function(element){
