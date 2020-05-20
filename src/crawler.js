@@ -39,10 +39,21 @@ async function crawl () {
         });
 
 
+<<<<<<< HEAD
       //  const endpoint = conf.opcua.url;
       //  await client.connect(endpoint);
       //  const endpoints = await client.getEndpoints();
       //  console.log(endpoints);
+=======
+        const endpoint = conf.opcua.url;
+        await client.connect(endpoint);
+        const endpoints = await client.getEndpoints();
+        console.log(endpoints.map(endpoint1 => ({
+          endpointUrl: endpoint1.endpointUrl,
+          securityMode: endpoint1.securityMode.toString(),
+          securityPolicy: endpoint1.securityPolicyUri.toString
+        })));
+>>>>>>> 9944a19c443ad4f8c67c045883f1a1596b34b8b0
         var userIdentity = {
           userName: conf.opcua.user,
           password: conf.opcua.pass,
@@ -59,9 +70,15 @@ async function crawl () {
         var fileName = './data/crawledDataPoints' + year + month + date + hours + minutes + seconds + '.json';
         var nodeId = "ObjectsFolder"
         data = await crawler.read(nodeId);
+<<<<<<< HEAD
       //  treeify.asLines(data, true, true, function (line) {
       //      console.log(line);
             fs.writeFile(fileName, JSON.stringify(data), function (err) {
+=======
+        treeify.asLines(data, true, true, function (line) {
+            console.log(line);
+            fs.writeFile(fileName, JSON.stringify(data, null, 4), function (err) {
+>>>>>>> 9944a19c443ad4f8c67c045883f1a1596b34b8b0
               if (err) return console.log(err);
             });
           //  });
