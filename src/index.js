@@ -56,9 +56,10 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     // Create and start the OPCUA connection.
     //
 
-    log.info('Initialising crawler')
+
 
     if (conf.opcua.crawler) {
+          log.info('Initialising crawler')
           await crawler.crawl()
     }
 
