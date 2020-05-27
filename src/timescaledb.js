@@ -41,9 +41,9 @@ var value1 = connection.define('values', {
     freezeTableName: true
   }
 
-)
+);
 
-
+var boolcheck = "";
 
 async function start () {
 
@@ -63,15 +63,15 @@ async function write (points) {
   let pts = points.map((p) => {
     let tags = p.tags || {}
 
-    var boolcheck = p.value
+    boolcheck = p.value
 
     connection.sync().then(function() {
       try {
         value1.create({
 
-          if ( boolcheck === true ) {
+          if (boolcheck == "true") {
             value: 1
-          }else if( boolcheck === false ) {
+          }else if( boolcheck == false ) {
             value: 0
           }else {
             value: boolcheck
