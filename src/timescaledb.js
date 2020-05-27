@@ -63,19 +63,19 @@ async function write (points) {
   let pts = points.map((p) => {
     let tags = p.tags || {}
 
-    boolcheck = p.value
+    if (boolcheck = "true") {
+      boolcheck = 1;
+    } else if(boolcheck = "false") {
+      boolcheck = 0;
+    } else {
+      boolcheck = p.value
+    };
 
     connection.sync().then(function() {
       try {
         value1.create({
 
-          if (boolcheck == "true") {
-            value: 1
-          }else if( boolcheck == false ) {
-            value: 0
-          }else {
-            value: boolcheck
-          };
+          value: boolcheck,
 
           variable_name: p.metric.name,
           status: p.status,
