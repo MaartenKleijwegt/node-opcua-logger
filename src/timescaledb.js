@@ -70,7 +70,7 @@ async function write (points) {
     connection.sync().then(function() {
       try {
         boolcheck = p.value
-        if (boolcheck === "true") {
+        if (boolcheck = "true") {
           boolcheck = 1;
           value1.create({
 
@@ -85,7 +85,7 @@ async function write (points) {
             location: p.metric.location,
           })
           return value1
-        } else if(boolcheck === "false") {
+        } else if(boolcheck = "false") {
           boolcheck = 0;
           value1.create({
 
