@@ -61,7 +61,7 @@ async function start () {
 
 async function write (points) {
   let pts = points.map((p) => {
-    let tags = p.tags || {},
+    let tags = p.tags || {}
 
     var boolcheck = p.value
 
