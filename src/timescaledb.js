@@ -63,9 +63,15 @@ async function write (points) {
   let pts = points.map((p) => {
     let tags = p.tags || {}
 
+<<<<<<< HEAD
     if (boolcheck = true) {
       boolcheck = 1;
     } else if(boolcheck = false) {
+=======
+    if (boolcheck = "true") {
+      boolcheck = 1;
+    } else if(boolcheck = "false") {
+>>>>>>> 2ff2b097e76e64b9f8b496cdf1825b5daaace2a7
       boolcheck = 0;
     } else {
       boolcheck = p.value
