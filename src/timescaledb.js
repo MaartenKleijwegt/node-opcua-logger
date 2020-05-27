@@ -63,7 +63,7 @@ async function write (points) {
   let pts = points.map((p) => {
     let tags = p.tags || {},
 
-    let boolcheck = p.value
+    var boolcheck = p.value
 
     connection.sync().then(function() {
       try {
