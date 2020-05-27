@@ -77,7 +77,7 @@ async function write (points) {
     connection.sync().then(function() {
       try {
         value1.create({
-          value: (p.value == "true")  ? 1 : (p.value == "false") ? 0 : p.value,
+          value: (p.value == true)  ? 1 : (p.value == false) ? 0 : p.value,
 
           variable_name: p.metric.name,
           status: p.status,
