@@ -65,58 +65,27 @@ async function write (points) {
     let tags = p.tags || {}
 
 
-
+    boolcheck = p.value
+    if (boolcheck === "true") {
+      boolcheck = 1;
+    } else if(boolcheck == "false") {
+      boolcheck = 0;
+    } else {
+      boolcheck = p.value
+    };
 
     connection.sync().then(function() {
       try {
-        boolcheck = p.value
-        if (boolcheck = "true") {
-          boolcheck = 1;
-          value1.create({
+        value1.create({
+          value: (p.value == "true")  ? 1 : (p.value == "false") ? 0 : p.value,
 
+          variable_name: p.metric.name,
+          status: p.status,
 
-
-            value: boolcheck,
-
-            variable_name: p.metric.name,
-            status: p.status,
-
-            timestamp: p.timestamp,
-            location: p.metric.location,
-          })
-          return value1
-        } else if(boolcheck = "false") {
-          boolcheck = 0;
-          value1.create({
-
-
-
-            value: boolcheck,
-
-            variable_name: p.metric.name,
-            status: p.status,
-
-            timestamp: p.timestamp,
-            location: p.metric.location,
-          })
-          return value1
-        } else {
-          boolcheck = p.value
-          value1.create({
-
-
-
-            value: boolcheck,
-
-            variable_name: p.metric.name,
-            status: p.status,
-
-            timestamp: p.timestamp,
-            location: p.metric.location,
-          })
-          return value1
-        };
-
+          timestamp: p.timestamp,
+          location: p.metric.location,
+        })
+        return value1
       } catch (e) {
         log.error("Fout: ", e);
       }
