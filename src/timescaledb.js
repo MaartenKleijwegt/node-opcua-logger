@@ -66,9 +66,9 @@ async function write (points) {
 
 
     boolcheck = p.value
-    if (boolcheck == "true") {
+    if (boolcheck === "true") {
       boolcheck = 1;
-    } else if(boolcheck == "false") {
+    } else if(boolcheck === "false") {
       boolcheck = 0;
     } else {
       boolcheck = p.value
