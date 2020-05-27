@@ -65,28 +65,58 @@ async function write (points) {
     let tags = p.tags || {}
 
 
-    boolcheck = p.value
-    if (boolcheck === "true") {
-      boolcheck = 1;
-    } else if(boolcheck === "false") {
-      boolcheck = 0;
-    } else {
-      boolcheck = p.value
-    };
+
 
     connection.sync().then(function() {
       try {
-        value1.create({
+        boolcheck = p.value
+        if (boolcheck === "true") {
+          boolcheck = 1;
+          value1.create({
 
-          value: boolcheck,
 
-          variable_name: p.metric.name,
-          status: p.status,
 
-          timestamp: p.timestamp,
-          location: p.metric.location,
-        })
-        return value1
+            value: boolcheck,
+
+            variable_name: p.metric.name,
+            status: p.status,
+
+            timestamp: p.timestamp,
+            location: p.metric.location,
+          })
+          return value1
+        } else if(boolcheck === "false") {
+          boolcheck = 0;
+          value1.create({
+
+
+
+            value: boolcheck,
+
+            variable_name: p.metric.name,
+            status: p.status,
+
+            timestamp: p.timestamp,
+            location: p.metric.location,
+          })
+          return value1
+        } else {
+          boolcheck = p.value
+          value1.create({
+
+
+
+            value: boolcheck,
+
+            variable_name: p.metric.name,
+            status: p.status,
+
+            timestamp: p.timestamp,
+            location: p.metric.location,
+          })
+          return value1
+        };
+
       } catch (e) {
         log.error("Fout: ", e);
       }
