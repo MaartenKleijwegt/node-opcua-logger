@@ -68,9 +68,9 @@ async function write (points) {
       try {
         value1.create({
 
-          if ( boolcheck == "true" ) {
+          if ( boolcheck === true ) {
             value: 1,
-          }else if( boolcheck == "false" ) {
+          }else if( boolcheck === false ) {
             value: 0,
           }else {
             value: boolcheck,
