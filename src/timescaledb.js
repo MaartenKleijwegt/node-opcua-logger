@@ -67,7 +67,7 @@ async function write (points) {
     connection.sync().then(function() {
       try {
         value1.create({
-          if(p.value = "true"){
+          if p.value == "true" {
             value: 1
           }else if (p.value = "false") {
             value: 0
