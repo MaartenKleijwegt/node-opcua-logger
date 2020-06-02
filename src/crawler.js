@@ -1,6 +1,6 @@
 let opcua = require('node-opcua')
 const path = require('path');
-fs = require('fs');
+var fs = require('fs');
 var treeify = require('treeify');
 
 const config = require('./config.js');
@@ -66,7 +66,7 @@ async function crawl () {
       //       if (err) return console.log(err);
       //      });
       //      });
-            console.log('File writing with crawled points succesfull!');
+            console.log('File writing with crawled points succesful!');
         await session.close();
         await client.disconnect();
 

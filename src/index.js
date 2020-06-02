@@ -35,23 +35,26 @@ process.on('SIGINT', async () => { await gracefullShutdown('received SIGINT') })
     //
 
     log.info('Initialising influxClient')
+    if (conf.influx.enabled) {
     await influx.start(conf.influx.url)
-
+    }
     //
     // Init timescaledb
     //
 
     log.info('Initialising TimeScaleDB')
+        if (conf.timescaledb.enabled) {
     await timescaledb.start()
-
+}
     //
     // Create and start the buffer.
     //
 
 
     log.info('Initialising buffer')
+    if (conf.influx.enabled) {
     await buffer.start(influx.write)
-
+  }
     //
     // Create and start the OPCUA connection.
     //
