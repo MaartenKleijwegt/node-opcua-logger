@@ -20,7 +20,7 @@ const TICKR = new ClockTickr({ interval: 1000 })
 const EVENTS = new EventEmitter()
 const UACLIENT = opcua.OPCUAClient.create({
   applicationName: 'factry-opcua-logger',
-   certificateFile: (conf.opcua.certificate ? (path.join(__dirname, '../certificates/client_selfsigned_cert.pem')) : "" && log.error("Cannot find certificate file, running without certificate")),
+   certificateFile: (conf.opcua.certificate ? (path.join(__dirname, '../certificates/client_selfsigned_cert.pem')) : log.error("Cannot find certificate file, running without certificate")),
   clientName: 'factry-opcua-logger',
   connectionStrategy: {
     maxRetry: 3,
