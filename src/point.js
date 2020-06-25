@@ -27,6 +27,9 @@ class Point {
           this.value = false
           if (this.status === 'Good') this.status = 'BadInvalidDataType'
         }
+        break      
+      case 'var':
+          this.value = this.value.toString()
         break
       default:
         console.error('Measurement %s has unknown datatype %s.',
